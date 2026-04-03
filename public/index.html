@@ -8,6 +8,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'ArmCoronet';
+            src: url('fonts/ArmCoronetU.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'ArmAllegro';
+            src: url('fonts/ArmAllegroU.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'DavelAghvor';
+            src: url('fonts/davel-aghvor.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -559,7 +583,7 @@
             position: relative;
             width: calc(100% + 48px);
             margin: 0 -24px;
-            height: 180px;
+            height: 220px;
             overflow: hidden;
             border-radius: 18px 18px 0 0;
         }
@@ -568,8 +592,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 35%;
             display: block;
-            filter: brightness(0.92) saturate(0.85) sepia(0.15);
+            filter: brightness(0.95) saturate(0.75) sepia(0.2) contrast(1.05);
+            transition: transform 0.8s ease, filter 0.8s ease;
+        }
+
+        .venue-image:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.0) saturate(0.85) sepia(0.15) contrast(1.05);
         }
 
         .venue-image-overlay {
@@ -577,8 +608,9 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 60%;
-            background: linear-gradient(to top, var(--white) 0%, transparent 100%);
+            height: 70%;
+            background: linear-gradient(to top, var(--white) 0%, rgba(255,248,240,0.3) 60%, transparent 100%);
+            pointer-events: none;
         }
 
         /* ===== RSVP ===== */
@@ -1018,31 +1050,44 @@
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* ===== ARMENIAN FONTS ===== */
-        [data-lang="hy"] .engagement-text {
-            font-family: 'Noto Serif Armenian', serif;
-            font-weight: 700;
-            font-size: 2.4rem;
-        }
 
+        /* ArmCoronet — cursive calligraphy for hero headlines */
         [data-lang="hy"] .save-the-date {
-            font-family: 'Noto Serif Armenian', serif;
-            font-weight: 300;
-            font-size: 1.9rem;
-            letter-spacing: 0.05em;
-            transform: skewX(-6deg);
-            display: inline-block;
+            font-family: 'ArmCoronet', 'Noto Serif Armenian', serif;
+            font-size: 2.2rem;
+            letter-spacing: 0.02em;
+            transform: none;
         }
 
         [data-lang="hy"] .footer-text {
-            font-family: 'Noto Serif Armenian', serif;
-            font-weight: 600;
-            font-size: 1.4rem;
+            font-family: 'ArmCoronet', 'Noto Serif Armenian', serif;
+            font-size: 1.6rem;
+        }
+
+        [data-lang="hy"] .music-intro-text {
+            font-family: 'ArmCoronet', 'Noto Serif Armenian', serif;
+            font-size: 1.5rem;
+        }
+
+        /* ArmAllegro — elegant display for titles */
+        [data-lang="hy"] .engagement-text {
+            font-family: 'ArmAllegro', 'Noto Serif Armenian', serif;
+            font-size: 2.6rem;
         }
 
         [data-lang="hy"] .section-title {
-            font-family: 'Noto Serif Armenian', serif;
+            font-family: 'ArmAllegro', 'Noto Serif Armenian', serif;
         }
 
+        [data-lang="hy"] .detail-value {
+            font-family: 'ArmAllegro', 'Noto Serif Armenian', serif;
+        }
+
+        [data-lang="hy"] .success-title {
+            font-family: 'ArmAllegro', 'Noto Serif Armenian', serif;
+        }
+
+        /* DavelAghvor — beautiful body text */
         [data-lang="hy"] .invite-text,
         [data-lang="hy"] .section-subtitle,
         [data-lang="hy"] .detail-label,
@@ -1059,16 +1104,19 @@
         [data-lang="hy"] .add-guest-btn,
         [data-lang="hy"] .empty-list-text,
         [data-lang="hy"] .event-date-hero {
-            font-family: 'Noto Serif Armenian', 'Montserrat', sans-serif;
+            font-family: 'DavelAghvor', 'Noto Serif Armenian', sans-serif;
         }
 
         [data-lang="hy"] .form-input,
         [data-lang="hy"] .form-textarea,
         [data-lang="hy"] .detail-sub,
-        [data-lang="hy"] .detail-value,
         [data-lang="hy"] .success-text,
         [data-lang="hy"] .guest-name {
-            font-family: 'Noto Serif Armenian', 'Cormorant Garamond', serif;
+            font-family: 'DavelAghvor', 'Noto Serif Armenian', serif;
+        }
+
+        [data-lang="hy"] .countdown-number {
+            font-family: 'ArmAllegro', 'Playfair Display', serif;
         }
 
         /* ===== RESPONSIVE ===== */
