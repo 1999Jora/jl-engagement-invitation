@@ -306,23 +306,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            position: relative;
+            height: 120px;
         }
 
         .monogram-letter {
-            font-family: 'Playfair Display', serif;
-            font-size: 5.5rem;
-            font-weight: 700;
+            font-family: 'Great Vibes', cursive;
+            font-size: 7rem;
+            font-weight: 400;
             color: var(--gold);
             line-height: 1;
             text-shadow: 0 2px 20px var(--gold-glow);
+            position: relative;
+        }
+
+        .monogram-letter-j {
+            z-index: 1;
+            margin-right: -22px;
+        }
+
+        .monogram-letter-l {
+            z-index: 2;
+            margin-left: -22px;
         }
 
         .monogram-and {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            color: var(--gold-dark);
-            margin: 0 5px;
+            display: none;
         }
 
         .monogram-line {
@@ -1234,7 +1243,8 @@
 
         /* ===== RESPONSIVE ===== */
         @media (min-width: 400px) {
-            .monogram-letter { font-size: 6.5rem; }
+            .monogram-letter { font-size: 8rem; }
+            .monogram { height: 140px; }
             .engagement-text { font-size: 4rem; }
             .countdown-item { width: 80px; height: 96px; }
             [data-lang="hy"] .engagement-text { font-size: 2.8rem; }
@@ -1242,7 +1252,10 @@
 
         @media (min-width: 768px) {
             section { padding: 80px 40px; }
-            .monogram-letter { font-size: 8rem; }
+            .monogram-letter { font-size: 10rem; }
+            .monogram { height: 170px; }
+            .monogram-letter-j { margin-right: -30px; }
+            .monogram-letter-l { margin-left: -30px; }
             .save-the-date { font-size: 3rem; }
             .engagement-text { font-size: 5rem; }
             .countdown-item { width: 100px; height: 112px; }
@@ -1313,9 +1326,8 @@
         <div class="monogram-wrapper">
             <div class="monogram-line monogram-line-top"></div>
             <div class="monogram">
-                <span class="monogram-letter">J</span>
-                <span class="monogram-and">&</span>
-                <span class="monogram-letter">L</span>
+                <span class="monogram-letter monogram-letter-j">J</span>
+                <span class="monogram-letter monogram-letter-l">L</span>
             </div>
             <div class="monogram-line monogram-line-bottom"></div>
         </div>
@@ -1391,21 +1403,15 @@
             <p class="detail-sub">Einlass ab 16:30 Uhr</p>
         </div>
 
-        <div class="detail-card" id="card-location" style="padding-top:0;overflow:hidden;">
-            <div class="venue-image">
-                <img src="venue.jpg" alt="Paradise Hall Armavir" onerror="this.parentElement.style.display='none'">
-                <div class="venue-image-overlay"></div>
-            </div>
-            <div style="padding-top:20px;">
-                <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                <p class="detail-label">Location</p>
-                <p class="detail-value">Paradise Hall</p>
-                <p class="detail-sub">Armavir</p>
-                <a href="https://maps.google.com/?q=Paradise+Hall+Armavir" target="_blank" rel="noopener" class="map-button">
-                    <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                    <span>Route planen</span>
-                </a>
-            </div>
+        <div class="detail-card" id="card-location">
+            <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <p class="detail-label">Location</p>
+            <p class="detail-value">Paradise Hall</p>
+            <p class="detail-sub">Armavir</p>
+            <a href="https://maps.google.com/?q=Paradise+Hall+Armavir" target="_blank" rel="noopener" class="map-button">
+                <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                <span>Route planen</span>
+            </a>
         </div>
     </section>
 
