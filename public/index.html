@@ -1026,8 +1026,11 @@
 
         [data-lang="hy"] .save-the-date {
             font-family: 'Noto Serif Armenian', serif;
-            font-weight: 600;
-            font-size: 1.8rem;
+            font-weight: 300;
+            font-size: 1.9rem;
+            letter-spacing: 0.05em;
+            transform: skewX(-6deg);
+            display: inline-block;
         }
 
         [data-lang="hy"] .footer-text {
@@ -1347,7 +1350,8 @@
                 personSuffix: 'Pers.',
                 sending: 'Wird gesendet...',
                 introText: 'Verlobungsfeier',
-                heroDate: '05 . 08 . 2026'
+                heroDate: '05 . 08 . 2026',
+                saveTheDate: 'Save the Date'
             },
             hy: {
                 inviteText: '\u0540\u0580\u0561\u057e\u056b\u0580\u0578\u0582\u0574 \u0565\u0576\u0584 \u057f\u0578\u0576\u0565\u056c\u0578\u0582 \u056b\u0580\u0565\u0576\u0581',
@@ -1381,7 +1385,8 @@
                 personSuffix: '\u0561\u0576\u0571',
                 sending: '\u0548\u0582\u0572\u0561\u0580\u056f\u057e\u0578\u0582\u0574 \u0567...',
                 introText: '\u0546\u0577\u0561\u0576\u0561\u0564\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576',
-                heroDate: '05 . 08 . 2026'
+                heroDate: '05 . 08 . 2026',
+                saveTheDate: '\u054a\u0561\u0570\u057a\u0561\u0576\u0565\u0584 \u0531\u0574\u057d\u0561\u0569\u056b\u057e\u0568'
             }
         };
 
@@ -1410,7 +1415,8 @@
                 '#emptyList .empty-list-text': 'emptyList',
                 '.footer-text': 'footerText',
                 '.music-intro-text': 'introText',
-                '.event-date-hero': 'heroDate'
+                '.event-date-hero': 'heroDate',
+                '.save-the-date': 'saveTheDate'
             };
 
             for (const [sel, key] of Object.entries(map)) {
