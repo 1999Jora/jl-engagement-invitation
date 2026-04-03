@@ -1,0 +1,13 @@
+{
+  "name": "jl-engagement-invitation",
+  "version": "1.0.0",
+  "description": "J & L Engagement Invitation Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
