@@ -6,18 +6,15 @@
     <title>J & L — Verlobungsfeier</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Noto+Sans+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --gold: #C5A55A;
             --gold-light: #D4BA7A;
             --gold-dark: #A8893E;
+            --gold-glow: rgba(197, 165, 90, 0.25);
             --cream: #FDF8F0;
             --cream-dark: #F5EDE0;
             --beige: #EDE3D3;
@@ -29,17 +26,131 @@
             --red-soft: #D4836A;
         }
 
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
             font-family: 'Cormorant Garamond', serif;
-            background-color: var(--cream);
+            background: var(--cream);
             color: var(--text-dark);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== MUSIC BUTTON ===== */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1.5px solid var(--beige);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 25px var(--gold-glow); }
+
+        .music-btn svg { width: 20px; height: 20px; fill: var(--gold); }
+
+        .music-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 18px;
+        }
+
+        .music-bars span {
+            width: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: height 0.2s ease;
+        }
+
+        .music-bars.playing span { animation: musicBar 0.8s ease-in-out infinite alternate; }
+        .music-bars.playing span:nth-child(1) { animation-delay: 0s; }
+        .music-bars.playing span:nth-child(2) { animation-delay: 0.2s; }
+        .music-bars.playing span:nth-child(3) { animation-delay: 0.4s; }
+        .music-bars.playing span:nth-child(4) { animation-delay: 0.1s; }
+
+        .music-bars:not(.playing) span { height: 4px !important; }
+
+        @keyframes musicBar {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+
+        /* ===== MUSIC INTRO OVERLAY ===== */
+        .music-intro {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(253, 248, 240, 0.97);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .music-intro.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .music-intro-content {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        .music-intro-monogram {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+        }
+
+        .music-intro-line {
+            width: 60px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 20px;
+        }
+
+        .music-intro-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: var(--gold-dark);
+            margin-bottom: 30px;
+        }
+
+        .music-intro-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 8px 30px var(--gold-glow);
+            transition: all 0.3s ease;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .music-intro-btn:hover { transform: scale(1.08); }
+
+        .music-intro-btn svg { width: 32px; height: 32px; fill: white; margin-left: 4px; }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 8px 30px var(--gold-glow); }
+            50% { box-shadow: 0 8px 50px rgba(197, 165, 90, 0.45); }
         }
 
         /* ===== LANGUAGE TOGGLE ===== */
@@ -69,68 +180,13 @@
             transition: all 0.3s ease;
         }
 
-        .lang-btn.active {
-            background: var(--gold);
-            color: var(--white);
-        }
+        .lang-btn.active { background: var(--gold); color: var(--white); }
 
-        /* ===== LOADING SCREEN ===== */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-monogram {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            letter-spacing: 0.3em;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .loader-line {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 15px auto;
-            animation: expandLine 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes expandLine {
-            0%, 100% { width: 30px; }
-            50% { width: 80px; }
-        }
-
-        /* ===== PARTICLES ===== */
+        /* ===== PARTICLES & HEARTS ===== */
         .particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -138,39 +194,29 @@
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
             border-radius: 50%;
             opacity: 0;
             animation: floatParticle linear infinite;
         }
 
+        .particle.dot { background: var(--gold); }
+
+        .particle.heart {
+            background: none;
+            border-radius: 0;
+        }
+
+        .particle.heart::before {
+            content: '\2665';
+            color: var(--gold-light);
+            font-size: inherit;
+        }
+
         @keyframes floatParticle {
-            0% { opacity: 0; transform: translateY(100vh) scale(0); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.2; }
-            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
-        }
-
-        /* ===== ORNAMENT SVG ===== */
-        .ornament-top, .ornament-bottom {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            opacity: 0.15;
-            z-index: 0;
-        }
-
-        .ornament-top {
-            top: -20px;
-            left: -20px;
-        }
-
-        .ornament-bottom {
-            bottom: -20px;
-            right: -20px;
-            transform: rotate(180deg);
+            0% { opacity: 0; transform: translateY(100vh) rotate(0deg) scale(0); }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.15; }
+            100% { opacity: 0; transform: translateY(-10vh) rotate(360deg) scale(1); }
         }
 
         /* ===== SECTIONS ===== */
@@ -186,7 +232,7 @@
             overflow: hidden;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
             text-align: center;
@@ -196,39 +242,40 @@
             position: absolute;
             border-radius: 50%;
             background: var(--beige);
-            opacity: 0.4;
+            opacity: 0.35;
+            transition: transform 1s ease;
         }
 
-        .hero-bg-shape-1 {
-            width: 300px;
-            height: 300px;
-            top: -80px;
-            left: -100px;
+        .hero-bg-shape-1 { width: 320px; height: 320px; top: -80px; left: -100px; }
+        .hero-bg-shape-2 { width: 260px; height: 260px; bottom: -60px; right: -80px; }
+
+        .ornament {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.12;
+            z-index: 0;
         }
 
-        .hero-bg-shape-2 {
-            width: 250px;
-            height: 250px;
-            bottom: -60px;
-            right: -80px;
-        }
+        .ornament-top { top: -20px; left: -20px; }
+        .ornament-bottom { bottom: -20px; right: -20px; transform: rotate(180deg); }
 
         .save-the-date {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
             color: var(--gold);
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.5s;
+            animation: fadeInUp 1s ease forwards 0.3s;
         }
 
         .monogram-wrapper {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             opacity: 0;
             transform: scale(0.8);
-            animation: scaleIn 1s ease forwards 0.8s;
+            animation: scaleIn 1s ease forwards 0.6s;
         }
 
         .monogram {
@@ -244,6 +291,7 @@
             font-weight: 700;
             color: var(--gold);
             line-height: 1;
+            text-shadow: 0 2px 20px var(--gold-glow);
         }
 
         .monogram-and {
@@ -251,7 +299,6 @@
             font-size: 2.8rem;
             color: var(--gold-dark);
             margin: 0 5px;
-            align-self: center;
         }
 
         .monogram-line {
@@ -266,22 +313,35 @@
 
         .invite-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--text-medium);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             opacity: 0;
-            animation: fadeInUp 1s ease forwards 1.1s;
+            animation: fadeInUp 1s ease forwards 0.9s;
         }
 
         .engagement-text {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
             color: var(--gold);
-            margin-bottom: 40px;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.1s;
+        }
+
+        .event-date-hero {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.4em;
+            color: var(--gold-dark);
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1.3s;
+            padding: 10px 24px;
+            border: 1px solid var(--gold-light);
+            border-radius: 30px;
+            margin-bottom: 40px;
         }
 
         .scroll-indicator {
@@ -294,7 +354,7 @@
             align-items: center;
             gap: 8px;
             opacity: 0;
-            animation: fadeInUp 1s ease forwards 1.8s;
+            animation: fadeInUp 1s ease forwards 1.6s;
             cursor: pointer;
         }
 
@@ -320,7 +380,7 @@
             50% { transform: rotate(45deg) translateY(6px); }
         }
 
-        /* ===== COUNTDOWN SECTION ===== */
+        /* ===== COUNTDOWN ===== */
         .countdown-section {
             background: linear-gradient(180deg, var(--cream-dark) 0%, var(--white) 50%, var(--cream-dark) 100%);
             text-align: center;
@@ -328,7 +388,7 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 400;
             color: var(--text-dark);
             margin-bottom: 8px;
@@ -336,7 +396,7 @@
 
         .section-subtitle {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--text-medium);
@@ -345,23 +405,28 @@
 
         .countdown {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .countdown-item {
-            width: 75px;
-            height: 90px;
+            width: 76px;
+            height: 92px;
             background: var(--white);
             border: 1px solid var(--beige);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(197, 165, 90, 0.08);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(197, 165, 90, 0.06);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px var(--gold-glow);
         }
 
         .countdown-number {
@@ -370,18 +435,26 @@
             font-weight: 600;
             color: var(--gold);
             line-height: 1.2;
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-number.tick { animation: tickNum 0.4s ease; }
+
+        @keyframes tickNum {
+            0% { transform: translateY(-8px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         .countdown-label {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.55rem;
+            font-size: 0.52rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-medium);
             margin-top: 4px;
         }
 
-        /* ===== DETAILS SECTION ===== */
+        /* ===== DETAILS ===== */
         .details-section {
             background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
             text-align: center;
@@ -390,25 +463,27 @@
         .detail-card {
             background: var(--white);
             border: 1px solid var(--beige);
-            border-radius: 16px;
-            padding: 30px 24px;
+            border-radius: 18px;
+            padding: 32px 24px;
             margin-bottom: 20px;
             width: 100%;
             max-width: 340px;
-            box-shadow: 0 4px 25px rgba(197, 165, 90, 0.06);
+            box-shadow: 0 4px 25px rgba(197, 165, 90, 0.05);
             opacity: 0;
             transform: translateY(40px);
-            transition: all 0.8s ease;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .detail-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .detail-card.visible { opacity: 1; transform: translateY(0); }
+
+        .detail-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--gold-glow);
         }
 
         .detail-icon {
-            width: 50px;
-            height: 50px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
             display: flex;
@@ -427,7 +502,7 @@
 
         .detail-label {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--brown-light);
@@ -459,7 +534,7 @@
             border-radius: 30px;
             color: var(--gold);
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             text-decoration: none;
@@ -480,7 +555,33 @@
             stroke-width: 2;
         }
 
-        /* ===== RSVP SECTION ===== */
+        .venue-image {
+            position: relative;
+            width: calc(100% + 48px);
+            margin: 0 -24px;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .venue-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.92) saturate(0.85) sepia(0.15);
+        }
+
+        .venue-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, var(--white) 0%, transparent 100%);
+        }
+
+        /* ===== RSVP ===== */
         .rsvp-section {
             background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 50%, var(--cream) 100%);
             text-align: center;
@@ -491,14 +592,60 @@
         .rsvp-card {
             background: var(--white);
             border: 1px solid var(--beige);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 36px 24px;
             width: 100%;
-            max-width: 360px;
-            box-shadow: 0 8px 40px rgba(197, 165, 90, 0.08);
+            max-width: 380px;
+            box-shadow: 0 8px 40px rgba(197, 165, 90, 0.07);
         }
 
         .rsvp-card .section-title { margin-bottom: 4px; }
+
+        /* Step indicator */
+        .steps-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 28px;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--beige);
+            transition: all 0.4s ease;
+        }
+
+        .step-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .step-dot.done { background: var(--green); }
+
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: var(--beige);
+            transition: background 0.4s ease;
+        }
+
+        .step-line.done { background: var(--green); }
+
+        /* Form steps */
+        .form-step {
+            display: none;
+            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .form-step.active { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
         .form-group {
             margin-bottom: 18px;
@@ -508,7 +655,7 @@
         .form-label {
             display: block;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--text-medium);
@@ -517,26 +664,24 @@
 
         .form-input, .form-select, .form-textarea {
             width: 100%;
-            padding: 12px 16px;
+            padding: 13px 16px;
             border: 1.5px solid var(--beige);
-            border-radius: 10px;
+            border-radius: 12px;
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.05rem;
             color: var(--text-dark);
             background: var(--cream);
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
             -webkit-appearance: none;
         }
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-glow);
         }
 
-        .form-textarea {
-            resize: none;
-            height: 80px;
-        }
+        .form-textarea { resize: none; height: 80px; }
 
         .form-select {
             cursor: pointer;
@@ -546,93 +691,219 @@
             padding-right: 40px;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
+        /* Guest name inputs */
+        .guest-names-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .guest-name-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.4s ease;
+        }
+
+        .guest-name-row .form-input { flex: 1; }
+
+        .guest-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .add-guest-btn, .remove-guest-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-guest-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 8px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        .add-guest-btn:hover { color: var(--gold-dark); }
+
+        .add-guest-btn svg, .remove-guest-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .remove-guest-btn {
+            color: var(--red-soft);
+            padding: 4px;
+        }
+
+        .remove-guest-btn:hover { color: #c0604a; }
+
+        /* Buttons */
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn-back {
+            flex: 0 0 auto;
+            padding: 13px 20px;
+            background: transparent;
+            border: 1.5px solid var(--beige);
+            border-radius: 30px;
+            color: var(--text-medium);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover { border-color: var(--gold); color: var(--gold); }
+
+        .btn-next, .submit-btn {
+            flex: 1;
+            padding: 13px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             border: none;
             border-radius: 30px;
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 8px;
             position: relative;
             overflow: hidden;
         }
 
-        .submit-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
+        .btn-next:hover, .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--gold-glow);
         }
 
-        .submit-btn:active::after {
-            width: 300px;
-            height: 300px;
+        .btn-next:active, .submit-btn:active { transform: translateY(0); }
+
+        /* Attendance toggle */
+        .attendance-toggle {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(197, 165, 90, 0.3);
+        .attendance-option {
+            flex: 1;
+            padding: 16px 12px;
+            border: 2px solid var(--beige);
+            border-radius: 14px;
+            background: var(--cream);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
+        .attendance-option:hover { border-color: var(--gold-light); }
+
+        .attendance-option.selected {
+            border-color: var(--gold);
+            background: var(--white);
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        .attendance-option.selected.yes { border-color: var(--green); }
+        .attendance-option.selected.no { border-color: var(--red-soft); }
+
+        .attendance-icon {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .attendance-option.selected .attendance-icon { transform: scale(1.2); }
+
+        .attendance-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-medium);
+        }
+
+        /* Success */
         .success-message {
             display: none;
             text-align: center;
-            padding: 30px 10px;
+            padding: 20px 10px;
         }
 
-        .success-message.show {
-            display: block;
-            animation: fadeInUp 0.6s ease;
-        }
+        .success-message.show { display: block; animation: fadeInUp 0.6s ease; }
 
         .success-check {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
+            margin: 0 auto 18px;
+            animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .success-check svg {
-            width: 28px;
-            height: 28px;
-            stroke: white;
-            fill: none;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        @keyframes successPop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); }
         }
 
-        .success-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 8px;
+        .success-check svg { width: 30px; height: 30px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+        .success-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-dark); margin-bottom: 8px; }
+
+        .success-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--text-medium); line-height: 1.5; }
+
+        /* ===== CONFETTI ===== */
+        .confetti-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
         }
 
-        .success-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--text-medium);
+        .confetti-piece {
+            position: absolute;
+            top: -10px;
+            animation: confettiFall linear forwards;
         }
 
-        /* ===== GUEST LIST SECTION ===== */
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== GUEST LIST ===== */
         .guestlist-section {
             background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 50%, var(--cream) 100%);
             text-align: center;
@@ -643,139 +914,80 @@
         .guestlist-card {
             background: var(--white);
             border: 1px solid var(--beige);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 36px 24px;
             width: 100%;
-            max-width: 360px;
-            box-shadow: 0 8px 40px rgba(197, 165, 90, 0.08);
+            max-width: 380px;
+            box-shadow: 0 8px 40px rgba(197, 165, 90, 0.07);
         }
 
         .guest-count-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
-            padding: 8px 18px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
             margin-bottom: 24px;
         }
 
-        .guest-count-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--gold);
-        }
+        .guest-count-number { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold); }
 
-        .guest-count-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-medium);
-        }
+        .guest-count-text { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-medium); }
 
         .guest-list {
             list-style: none;
-            max-height: 350px;
+            max-height: 380px;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: var(--beige) transparent;
         }
 
-        .guest-list::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .guest-list::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .guest-list::-webkit-scrollbar-thumb {
-            background: var(--beige);
-            border-radius: 4px;
-        }
+        .guest-list::-webkit-scrollbar { width: 4px; }
+        .guest-list::-webkit-scrollbar-track { background: transparent; }
+        .guest-list::-webkit-scrollbar-thumb { background: var(--beige); border-radius: 4px; }
 
         .guest-item {
             display: flex;
             align-items: center;
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid var(--cream-dark);
             animation: fadeInUp 0.4s ease forwards;
             opacity: 0;
         }
 
-        .guest-item:last-child {
-            border-bottom: none;
-        }
+        .guest-item:last-child { border-bottom: none; }
 
         .guest-avatar {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
+            margin-right: 14px;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px var(--gold-glow);
         }
 
-        .guest-avatar span {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--white);
-        }
+        .guest-avatar span { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 600; color: var(--white); }
 
-        .guest-info {
-            flex: 1;
-            text-align: left;
-        }
+        .guest-info { flex: 1; text-align: left; }
 
-        .guest-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
+        .guest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-dark); }
 
-        .guest-details {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            color: var(--text-medium);
-            letter-spacing: 0.05em;
-        }
+        .guest-details { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; color: var(--text-medium); letter-spacing: 0.05em; }
 
-        .guest-status {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--green);
-            flex-shrink: 0;
-            margin-left: 8px;
-        }
+        .guest-status { width: 9px; height: 9px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-left: 8px; box-shadow: 0 0 6px rgba(124, 174, 122, 0.4); }
 
-        .guest-status.declined {
-            background: var(--red-soft);
-        }
+        .guest-status.declined { background: var(--red-soft); box-shadow: 0 0 6px rgba(212, 131, 106, 0.4); }
 
-        .empty-list {
-            padding: 30px 10px;
-            text-align: center;
-        }
+        .empty-list { padding: 30px 10px; text-align: center; }
 
-        .empty-list-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-            opacity: 0.4;
-        }
+        .empty-list-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.35; }
 
-        .empty-list-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            color: var(--text-medium);
-        }
+        .empty-list-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-medium); }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -785,34 +997,11 @@
             min-height: auto;
         }
 
-        .footer-monogram {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
-            margin-bottom: 10px;
-        }
+        .footer-monogram { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 10px; }
+        .footer-text { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--gold-dark); margin-bottom: 10px; }
+        .footer-date { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-medium); }
 
-        .footer-text {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: var(--gold-dark);
-            margin-bottom: 10px;
-        }
-
-        .footer-date {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            color: var(--text-medium);
-        }
-
-        .divider {
-            width: 50px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 16px auto;
-        }
+        .divider { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 16px auto; }
 
         /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
@@ -825,61 +1014,66 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== ARMENIAN FONT ===== */
-        [data-lang="hy"] .section-title,
-        [data-lang="hy"] .section-subtitle,
-        [data-lang="hy"] .detail-label,
-        [data-lang="hy"] .detail-sub,
-        [data-lang="hy"] .form-label,
-        [data-lang="hy"] .form-input,
-        [data-lang="hy"] .form-select,
-        [data-lang="hy"] .form-textarea,
-        [data-lang="hy"] .submit-btn,
-        [data-lang="hy"] .countdown-label,
-        [data-lang="hy"] .scroll-indicator span,
-        [data-lang="hy"] .invite-text,
-        [data-lang="hy"] .guest-count-text,
-        [data-lang="hy"] .guest-details,
-        [data-lang="hy"] .map-button,
-        [data-lang="hy"] .success-text,
-        [data-lang="hy"] .empty-list-text,
-        [data-lang="hy"] .footer-date {
-            font-family: 'Noto Sans Armenian', 'Montserrat', sans-serif;
-        }
-
+        /* ===== ARMENIAN FONTS ===== */
         [data-lang="hy"] .engagement-text {
-            font-family: 'Noto Sans Armenian', serif;
+            font-family: 'Noto Serif Armenian', serif;
             font-weight: 700;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
         }
 
         [data-lang="hy"] .save-the-date {
-            font-family: 'Noto Sans Armenian', serif;
+            font-family: 'Noto Serif Armenian', serif;
             font-weight: 600;
+            font-size: 1.8rem;
         }
 
         [data-lang="hy"] .footer-text {
-            font-family: 'Noto Sans Armenian', serif;
+            font-family: 'Noto Serif Armenian', serif;
             font-weight: 600;
             font-size: 1.4rem;
+        }
+
+        [data-lang="hy"] .section-title {
+            font-family: 'Noto Serif Armenian', serif;
+        }
+
+        [data-lang="hy"] .invite-text,
+        [data-lang="hy"] .section-subtitle,
+        [data-lang="hy"] .detail-label,
+        [data-lang="hy"] .countdown-label,
+        [data-lang="hy"] .form-label,
+        [data-lang="hy"] .submit-btn,
+        [data-lang="hy"] .btn-next,
+        [data-lang="hy"] .btn-back,
+        [data-lang="hy"] .scroll-indicator span,
+        [data-lang="hy"] .guest-count-text,
+        [data-lang="hy"] .guest-details,
+        [data-lang="hy"] .map-button,
+        [data-lang="hy"] .attendance-label,
+        [data-lang="hy"] .add-guest-btn,
+        [data-lang="hy"] .empty-list-text,
+        [data-lang="hy"] .event-date-hero {
+            font-family: 'Noto Serif Armenian', 'Montserrat', sans-serif;
+        }
+
+        [data-lang="hy"] .form-input,
+        [data-lang="hy"] .form-textarea,
+        [data-lang="hy"] .detail-sub,
+        [data-lang="hy"] .detail-value,
+        [data-lang="hy"] .success-text,
+        [data-lang="hy"] .guest-name {
+            font-family: 'Noto Serif Armenian', 'Cormorant Garamond', serif;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (min-width: 400px) {
             .monogram-letter { font-size: 6.5rem; }
             .engagement-text { font-size: 4rem; }
-            .countdown-item { width: 80px; height: 95px; }
+            .countdown-item { width: 80px; height: 96px; }
+            [data-lang="hy"] .engagement-text { font-size: 2.8rem; }
         }
 
         @media (min-width: 768px) {
@@ -887,15 +1081,43 @@
             .monogram-letter { font-size: 8rem; }
             .save-the-date { font-size: 3rem; }
             .engagement-text { font-size: 5rem; }
-            .countdown-item { width: 100px; height: 110px; }
+            .countdown-item { width: 100px; height: 112px; }
             .countdown-number { font-size: 2.5rem; }
-            .detail-card { max-width: 400px; padding: 40px 30px; }
-            .rsvp-card { max-width: 420px; padding: 44px 32px; }
-            .guestlist-card { max-width: 420px; padding: 44px 32px; }
+            .detail-card { max-width: 420px; padding: 40px 30px; }
+            .rsvp-card { max-width: 440px; padding: 44px 32px; }
+            .guestlist-card { max-width: 440px; padding: 44px 32px; }
+            [data-lang="hy"] .engagement-text { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body data-lang="de">
+
+    <!-- MUSIC INTRO -->
+    <div class="music-intro" id="musicIntro">
+        <div class="music-intro-content">
+            <div class="music-intro-monogram">J & L</div>
+            <div class="music-intro-line"></div>
+            <p class="music-intro-text">Verlobungsfeier</p>
+            <button class="music-intro-btn" id="musicIntroBtn">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MUSIC BUTTON -->
+    <button class="music-btn" id="musicBtn" style="display:none;">
+        <div class="music-bars" id="musicBars">
+            <span style="height:8px"></span>
+            <span style="height:14px"></span>
+            <span style="height:6px"></span>
+            <span style="height:12px"></span>
+        </div>
+    </button>
 
     <!-- LANGUAGE TOGGLE -->
     <div class="lang-toggle">
@@ -903,33 +1125,22 @@
         <button class="lang-btn" onclick="setLang('hy')">HY</button>
     </div>
 
-    <!-- LOADER -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-monogram">J & L</div>
-            <div class="loader-line"></div>
-        </div>
-    </div>
-
-    <!-- FLOATING PARTICLES -->
+    <!-- PARTICLES -->
     <div class="particles" id="particles"></div>
+
+    <!-- CONFETTI CONTAINER -->
+    <div class="confetti-container" id="confetti"></div>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
         <div class="hero-bg-shape hero-bg-shape-1"></div>
         <div class="hero-bg-shape hero-bg-shape-2"></div>
 
-        <svg class="ornament-top" viewBox="0 0 200 200">
+        <svg class="ornament ornament-top" viewBox="0 0 200 200">
             <g fill="none" stroke="#C5A55A" stroke-width="1.2" opacity="0.6">
-                <path d="M20,100 Q20,20 100,20"/>
-                <circle cx="100" cy="20" r="8"/>
-                <path d="M10,80 Q10,10 80,10"/>
-                <circle cx="30" cy="30" r="12"/>
-                <path d="M30,120 Q30,40 110,40"/>
-                <circle cx="50" cy="55" r="6"/>
-                <path d="M15,60 C15,30 45,15 75,15" />
-                <circle cx="20" cy="60" r="10"/>
-                <path d="M40,90 Q25,50 65,35"/>
+                <path d="M20,100 Q20,20 100,20"/><circle cx="100" cy="20" r="8"/>
+                <path d="M10,80 Q10,10 80,10"/><circle cx="30" cy="30" r="12"/>
+                <path d="M30,120 Q30,40 110,40"/><circle cx="50" cy="55" r="6"/>
             </g>
         </svg>
 
@@ -945,25 +1156,20 @@
             <div class="monogram-line monogram-line-bottom"></div>
         </div>
 
-        <p class="invite-text" data-de="Laden euch herzlich ein zur" data-hy="Հրավիրում են տոնելու իրենց">Laden euch herzlich ein zur</p>
-        <p class="engagement-text" data-de="Verlobungsfeier" data-hy="Նdelays">Verlobungsfeier</p>
+        <p class="invite-text">Laden euch herzlich ein zur</p>
+        <p class="engagement-text">Verlobungsfeier</p>
+        <div class="event-date-hero">05 . 08 . 2026</div>
 
         <div class="scroll-indicator">
-            <span data-de="Mehr erfahren" data-hy="Իմանալ ավելին">Mehr erfahren</span>
+            <span>Mehr erfahren</span>
             <div class="scroll-arrow"></div>
         </div>
 
-        <svg class="ornament-bottom" viewBox="0 0 200 200">
+        <svg class="ornament ornament-bottom" viewBox="0 0 200 200">
             <g fill="none" stroke="#C5A55A" stroke-width="1.2" opacity="0.6">
-                <path d="M20,100 Q20,20 100,20"/>
-                <circle cx="100" cy="20" r="8"/>
-                <path d="M10,80 Q10,10 80,10"/>
-                <circle cx="30" cy="30" r="12"/>
-                <path d="M30,120 Q30,40 110,40"/>
-                <circle cx="50" cy="55" r="6"/>
-                <path d="M15,60 C15,30 45,15 75,15" />
-                <circle cx="20" cy="60" r="10"/>
-                <path d="M40,90 Q25,50 65,35"/>
+                <path d="M20,100 Q20,20 100,20"/><circle cx="100" cy="20" r="8"/>
+                <path d="M10,80 Q10,10 80,10"/><circle cx="30" cy="30" r="12"/>
+                <path d="M30,120 Q30,40 110,40"/><circle cx="50" cy="55" r="6"/>
             </g>
         </svg>
     </section>
@@ -971,113 +1177,108 @@
     <!-- ===== COUNTDOWN ===== -->
     <section class="countdown-section">
         <div class="reveal">
-            <h2 class="section-title" data-de="Countdown" data-hy="Հետdelays հաշվdelays">Countdown</h2>
-            <p class="section-subtitle" data-de="Bis zum grossen Tag" data-hy="Մინdelays մedelays delays delays">Bis zum grossen Tag</p>
+            <h2 class="section-title">Countdown</h2>
+            <p class="section-subtitle">Bis zum grossen Tag</p>
         </div>
         <div class="countdown reveal" id="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">--</span>
-                <span class="countdown-label" data-de="Tage" data-hy="Օdelays">Tage</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">--</span>
-                <span class="countdown-label" data-de="Stunden" data-hy="Ժdelays">Stunden</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">--</span>
-                <span class="countdown-label" data-de="Minuten" data-hy="Րdelays">Minuten</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">--</span>
-                <span class="countdown-label" data-de="Sekunden" data-hy="Վdelays">Sekunden</span>
-            </div>
+            <div class="countdown-item"><span class="countdown-number" id="days">--</span><span class="countdown-label">Tage</span></div>
+            <div class="countdown-item"><span class="countdown-number" id="hours">--</span><span class="countdown-label">Stunden</span></div>
+            <div class="countdown-item"><span class="countdown-number" id="minutes">--</span><span class="countdown-label">Minuten</span></div>
+            <div class="countdown-item"><span class="countdown-number" id="seconds">--</span><span class="countdown-label">Sekunden</span></div>
         </div>
     </section>
 
     <!-- ===== DETAILS ===== -->
     <section class="details-section">
         <div class="reveal">
-            <h2 class="section-title" data-de="Die Feier" data-hy="Տdelays">Die Feier</h2>
-            <p class="section-subtitle" data-de="Details zum Event" data-hy="Միdelays delays մdelays">Details zum Event</p>
+            <h2 class="section-title">Die Feier</h2>
+            <p class="section-subtitle">Details zum Event</p>
         </div>
 
         <div class="detail-card" id="card-date">
-            <div class="detail-icon">
-                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <p class="detail-label" data-de="Datum" data-hy="Ամdelays">Datum</p>
-            <p class="detail-value" data-de="05. August 2026" data-hy="05 Օdelays 2026">05. August 2026</p>
-            <p class="detail-sub" data-de="Mittwoch" data-hy="Չdelays">Mittwoch</p>
+            <div class="detail-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <p class="detail-label">Datum</p>
+            <p class="detail-value">05. August 2026</p>
+            <p class="detail-sub">Mittwoch</p>
         </div>
 
         <div class="detail-card" id="card-time">
-            <div class="detail-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <p class="detail-label" data-de="Uhrzeit" data-hy="Ժdelays">Uhrzeit</p>
+            <div class="detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <p class="detail-label">Uhrzeit</p>
             <p class="detail-value">17:00</p>
-            <p class="detail-sub" data-de="Einlass ab 16:30 Uhr" data-hy="Մdelays 16:30-idelays">Einlass ab 16:30 Uhr</p>
+            <p class="detail-sub">Einlass ab 16:30 Uhr</p>
         </div>
 
-        <div class="detail-card" id="card-location">
-            <div class="detail-icon">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="detail-card" id="card-location" style="padding-top:0;overflow:hidden;">
+            <div class="venue-image">
+                <img src="venue.jpg" alt="Paradise Hall Armavir" onerror="this.parentElement.style.display='none'">
+                <div class="venue-image-overlay"></div>
             </div>
-            <p class="detail-label">Location</p>
-            <p class="detail-value">Paradise Hall</p>
-            <p class="detail-sub" data-de="Armavir" data-hy="Արdelays">Armavir</p>
-            <a href="https://maps.google.com/?q=Paradise+Hall+Armavir" target="_blank" rel="noopener" class="map-button">
-                <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                <span data-de="Route planen" data-hy="Երdelays">Route planen</span>
-            </a>
+            <div style="padding-top:20px;">
+                <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <p class="detail-label">Location</p>
+                <p class="detail-value">Paradise Hall</p>
+                <p class="detail-sub">Armavir</p>
+                <a href="https://maps.google.com/?q=Paradise+Hall+Armavir" target="_blank" rel="noopener" class="map-button">
+                    <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                    <span>Route planen</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- ===== RSVP ===== -->
     <section class="rsvp-section">
         <div class="rsvp-card reveal">
-            <h2 class="section-title" data-de="Zusage" data-hy="Հdelays">Zusage</h2>
-            <p class="section-subtitle" style="margin-bottom: 28px;" data-de="Wir freuen uns auf euch" data-hy="Մdelays edelays delays delays">Wir freuen uns auf euch</p>
+            <h2 class="section-title">Zusage</h2>
+            <p class="section-subtitle" style="margin-bottom: 20px;">Wir freuen uns auf euch</p>
+
+            <div class="steps-indicator">
+                <div class="step-dot active" id="stepDot1"></div>
+                <div class="step-line" id="stepLine1"></div>
+                <div class="step-dot" id="stepDot2"></div>
+            </div>
 
             <form id="rsvpForm">
-                <div class="form-group">
-                    <label class="form-label" for="name" data-de="Name" data-hy="Անdelays">Name</label>
-                    <input class="form-input" type="text" id="name" data-de-placeholder="Vor- und Nachname" data-hy-placeholder="Անdelays Ազdelays" placeholder="Vor- und Nachname" required>
+                <!-- Step 1: Guest names -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group">
+                        <label class="form-label">Namen der Gäste</label>
+                        <div class="guest-names-container" id="guestNames">
+                            <div class="guest-name-row">
+                                <span class="guest-number">1</span>
+                                <input class="form-input guest-input" type="text" placeholder="Vor- und Nachname" required>
+                            </div>
+                        </div>
+                        <button type="button" class="add-guest-btn" id="addGuestBtn" onclick="addGuestInput()">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                            <span>Weitere Person</span>
+                        </button>
+                    </div>
+                    <div class="btn-row">
+                        <button type="button" class="btn-next" onclick="nextStep(2)">Weiter</button>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="guests" data-de="Anzahl Personen" data-hy="Հdelays delays">Anzahl Personen</label>
-                    <select class="form-select" id="guests">
-                        <option value="1" data-de="1 Person" data-hy="1 Հdelays">1 Person</option>
-                        <option value="2" selected data-de="2 Personen" data-hy="2 Հdelays">2 Personen</option>
-                        <option value="3" data-de="3 Personen" data-hy="3 Հdelays">3 Personen</option>
-                        <option value="4" data-de="4 Personen" data-hy="4 Հdelays">4 Personen</option>
-                        <option value="5" data-de="5+ Personen" data-hy="5+ Հdelays">5+ Personen</option>
-                    </select>
+                <!-- Step 2: Message -->
+                <div class="form-step" id="step2">
+                    <div class="form-group">
+                        <label class="form-label" for="message">Nachricht (optional)</label>
+                        <textarea class="form-textarea" id="message" placeholder="Eure Nachricht an J & L..."></textarea>
+                    </div>
+                    <div class="btn-row">
+                        <button type="button" class="btn-back" onclick="prevStep(1)">&#8592;</button>
+                        <button type="submit" class="submit-btn">Absenden</button>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="attendance" data-de="Teilnahme" data-hy="Մdelays">Teilnahme</label>
-                    <select class="form-select" id="attendance">
-                        <option value="yes" data-de="Ich komme gerne" data-hy="Կdelays">Ich komme gerne</option>
-                        <option value="no" data-de="Leider kann ich nicht" data-hy="Edelays delays">Leider kann ich nicht</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="message" data-de="Nachricht (optional)" data-hy="Հdelays (edelays)">Nachricht (optional)</label>
-                    <textarea class="form-textarea" id="message" placeholder="Eure Nachricht an J & L..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn" data-de="Zusage senden" data-hy="Ուdelays">Zusage senden</button>
             </form>
 
             <div class="success-message" id="successMsg">
                 <div class="success-check">
                     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
-                <p class="success-title" data-de="Vielen Dank!" data-hy="Շdelays!">Vielen Dank!</p>
-                <p class="success-text" data-de="Eure Zusage wurde gesendet. Wir freuen uns auf euch!" data-hy="Ձdelays delays delays delays:">Eure Zusage wurde gesendet. Wir freuen uns auf euch!</p>
+                <p class="success-title">Vielen Dank!</p>
+                <p class="success-text">Eure Zusage wurde gesendet.<br>Wir freuen uns auf euch!</p>
             </div>
         </div>
     </section>
@@ -1085,18 +1286,18 @@
     <!-- ===== GUEST LIST ===== -->
     <section class="guestlist-section">
         <div class="guestlist-card reveal">
-            <h2 class="section-title" data-de="Gästeliste" data-hy="Հdelays edelays">Gästeliste</h2>
-            <p class="section-subtitle" style="margin-bottom: 20px;" data-de="Wer kommt zur Feier" data-hy="Edelays edelays delays">Wer kommt zur Feier</p>
+            <h2 class="section-title">Gästeliste</h2>
+            <p class="section-subtitle" style="margin-bottom: 20px;">Wer kommt zur Feier</p>
 
             <div class="guest-count-badge">
                 <span class="guest-count-number" id="guestCountNum">0</span>
-                <span class="guest-count-text" data-de="Zusagen" data-hy="Հdelays">Zusagen</span>
+                <span class="guest-count-text">Zusagen</span>
             </div>
 
             <ul class="guest-list" id="guestList">
                 <div class="empty-list" id="emptyList">
                     <div class="empty-list-icon">&#9825;</div>
-                    <p class="empty-list-text" data-de="Noch keine Zusagen — seid die Ersten!" data-hy="Դedelays delays delays — edelays delays!">Noch keine Zusagen — seid die Ersten!</p>
+                    <p class="empty-list-text">Noch keine Zusagen — seid die Ersten!</p>
                 </div>
             </ul>
         </div>
@@ -1106,7 +1307,7 @@
     <section class="footer">
         <div class="footer-monogram">J & L</div>
         <div class="divider"></div>
-        <p class="footer-text" data-de="Wir freuen uns auf euch" data-hy="Մdelays edelays delays delays">Wir freuen uns auf euch</p>
+        <p class="footer-text">Wir freuen uns auf euch</p>
         <div class="divider"></div>
         <p class="footer-date">05 . 08 . 2026</p>
     </section>
@@ -1128,22 +1329,25 @@
                 locationSub: 'Armavir',
                 route: 'Route planen',
                 rsvp: 'Zusage', rsvpSub: 'Wir freuen uns auf euch',
-                nameLabel: 'Name', namePh: 'Vor- und Nachname',
-                guestsLabel: 'Anzahl Personen',
-                p1: '1 Person', p2: '2 Personen', p3: '3 Personen', p4: '4 Personen', p5: '5+ Personen',
                 attendLabel: 'Teilnahme',
-                attendYes: 'Ich komme gerne', attendNo: 'Leider kann ich nicht',
+                attendYes: 'Ich komme', attendNo: 'Leider nicht',
+                guestNamesLabel: 'Namen der G\u00e4ste',
+                namePh: 'Vor- und Nachname',
+                addGuest: 'Weitere Person',
                 msgLabel: 'Nachricht (optional)', msgPh: 'Eure Nachricht an J & L...',
-                submitBtn: 'Zusage senden',
+                submitBtn: 'Absenden',
+                btnNext: 'Weiter',
                 successTitle: 'Vielen Dank!',
-                successText: 'Eure Zusage wurde gesendet. Wir freuen uns auf euch!',
-                guestlistTitle: 'Gästeliste',
+                successText: 'Eure Zusage wurde gesendet.\nWir freuen uns auf euch!',
+                guestlistTitle: 'G\u00e4steliste',
                 guestlistSub: 'Wer kommt zur Feier',
                 guestBadge: 'Zusagen',
-                emptyList: 'Noch keine Zusagen — seid die Ersten!',
+                emptyList: 'Noch keine Zusagen \u2014 seid die Ersten!',
                 footerText: 'Wir freuen uns auf euch',
                 personSuffix: 'Pers.',
-                sending: 'Wird gesendet...'
+                sending: 'Wird gesendet...',
+                introText: 'Verlobungsfeier',
+                heroDate: '05 . 08 . 2026'
             },
             hy: {
                 inviteText: '\u0540\u0580\u0561\u057e\u056b\u0580\u0578\u0582\u0574 \u0565\u0576\u0584 \u057f\u0578\u0576\u0565\u056c\u0578\u0582 \u056b\u0580\u0565\u0576\u0581',
@@ -1159,13 +1363,14 @@
                 locationSub: '\u0531\u0580\u0574\u0561\u057e\u056b\u0580',
                 route: '\u0554\u0561\u0580\u057f\u0565\u0566',
                 rsvp: '\u0540\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574', rsvpSub: '\u054d\u057a\u0561\u057d\u0578\u0582\u0574 \u0565\u0576\u0584 \u0571\u0565\u0566',
-                nameLabel: '\u0531\u0576\u0578\u0582\u0576', namePh: '\u0531\u0576\u0578\u0582\u0576 \u0531\u0566\u0563\u0561\u0576\u0578\u0582\u0576',
-                guestsLabel: '\u0540\u0575\u0578\u0582\u0580\u0565\u0580\u056b \u0569\u056b\u057e\u0568',
-                p1: '1 \u0561\u0576\u0571', p2: '2 \u0561\u0576\u0571', p3: '3 \u0561\u0576\u0571', p4: '4 \u0561\u0576\u0571', p5: '5+ \u0561\u0576\u0571',
                 attendLabel: '\u0544\u0561\u057d\u0576\u0561\u056f\u0581\u0578\u0582\u0569\u0575\u0578\u0582\u0576',
-                attendYes: '\u053f\u0563\u0561\u0574 \u0570\u0561\u0573\u0578\u0575\u0584\u0578\u057e', attendNo: '\u0551\u0561\u057e\u0578\u056f, \u0579\u0565\u0574 \u056f\u0561\u0580\u0578\u0572',
+                attendYes: '\u053f\u0563\u0561\u0574', attendNo: '\u0551\u0561\u057e\u0578\u056f',
+                guestNamesLabel: '\u0540\u0575\u0578\u0582\u0580\u0565\u0580\u056b \u0561\u0576\u0578\u0582\u0576\u0576\u0565\u0580\u0568',
+                namePh: '\u0531\u0576\u0578\u0582\u0576 \u0531\u0566\u0563\u0561\u0576\u0578\u0582\u0576',
+                addGuest: '\u0531\u057e\u0565\u056c\u0561\u0581\u0576\u0565\u056c \u0570\u0575\u0578\u0582\u0580',
                 msgLabel: '\u0540\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576 (\u056f\u0561\u0574\u0561\u057e\u0578\u0580)', msgPh: '\u0541\u0565\u0580 \u0570\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 J & L-\u056b\u0576...',
                 submitBtn: '\u0540\u0561\u057d\u057f\u0561\u057f\u0565\u056c',
+                btnNext: '\u0540\u0561\u057b\u0578\u0580\u0564',
                 successTitle: '\u0547\u0576\u0578\u0580\u0570\u0561\u056f\u0561\u056c\u0578\u0582\u0569\u0575\u0578\u0582\u0576!',
                 successText: '\u0541\u0565\u0580 \u0570\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574\u0568 \u0578\u0582\u0572\u0561\u0580\u056f\u057e\u0565\u056c \u0567:',
                 guestlistTitle: '\u0540\u0575\u0578\u0582\u0580\u0565\u0580\u056b \u0581\u0578\u0582\u0581\u0561\u056f',
@@ -1174,40 +1379,38 @@
                 emptyList: '\u0534\u0565\u057c \u0570\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574\u0576\u0565\u0580 \u0579\u056f\u0561\u0576 \u2014 \u0565\u0572\u0565\u0584 \u0561\u057c\u0561\u057b\u056b\u0576\u0568!',
                 footerText: '\u054d\u057a\u0561\u057d\u0578\u0582\u0574 \u0565\u0576\u0584 \u0571\u0565\u0566',
                 personSuffix: '\u0561\u0576\u0571',
-                sending: '\u0548\u0582\u0572\u0561\u0580\u056f\u057e\u0578\u0582\u0574 \u0567...'
+                sending: '\u0548\u0582\u0572\u0561\u0580\u056f\u057e\u0578\u0582\u0574 \u0567...',
+                introText: '\u0546\u0577\u0561\u0576\u0561\u0564\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576',
+                heroDate: '05 . 08 . 2026'
             }
         };
 
         let currentLang = 'de';
+        let currentStep = 1;
+        let attendanceValue = 'yes';
 
+        // ===== LANGUAGE =====
         function setLang(lang) {
             currentLang = lang;
             document.body.setAttribute('data-lang', lang);
-
-            // Toggle buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
             });
 
-            // Update all data-translated elements
             const t = translations[lang];
             const map = {
-                '.invite-text': 'inviteText',
-                '.engagement-text': 'engagementText',
+                '.invite-text': 'inviteText', '.engagement-text': 'engagementText',
                 '.scroll-indicator span': 'scrollMore',
-                '.countdown-section .section-title': 'countdown',
-                '.countdown-section .section-subtitle': 'countdownSub',
-                '.details-section .section-title': 'details',
-                '.details-section .section-subtitle': 'detailsSub',
-                '.rsvp-section .section-title': 'rsvp',
-                '.rsvp-section .section-subtitle': 'rsvpSub',
+                '.countdown-section .section-title': 'countdown', '.countdown-section .section-subtitle': 'countdownSub',
+                '.details-section .section-title': 'details', '.details-section .section-subtitle': 'detailsSub',
+                '.rsvp-section .section-title': 'rsvp', '.rsvp-section .section-subtitle': 'rsvpSub',
                 '.success-title': 'successTitle',
-                '.success-text': 'successText',
-                '.guestlist-section .section-title': 'guestlistTitle',
-                '.guestlist-section .section-subtitle': 'guestlistSub',
+                '.guestlist-section .section-title': 'guestlistTitle', '.guestlist-section .section-subtitle': 'guestlistSub',
                 '.guest-count-text': 'guestBadge',
                 '#emptyList .empty-list-text': 'emptyList',
-                '.footer-text': 'footerText'
+                '.footer-text': 'footerText',
+                '.music-intro-text': 'introText',
+                '.event-date-hero': 'heroDate'
             };
 
             for (const [sel, key] of Object.entries(map)) {
@@ -1215,101 +1418,190 @@
                 if (el) el.textContent = t[key];
             }
 
-            // Countdown labels
+            // Success text with line break
+            const st = document.querySelector('.success-text');
+            if (st) st.innerHTML = t.successText.replace('\n', '<br>');
+
             const labels = document.querySelectorAll('.countdown-label');
-            const labelKeys = ['days', 'hours', 'minutes', 'seconds'];
-            labels.forEach((l, i) => { if (labelKeys[i]) l.textContent = t[labelKeys[i]]; });
+            ['days', 'hours', 'minutes', 'seconds'].forEach((k, i) => { if (labels[i]) labels[i].textContent = t[k]; });
 
-            // Detail cards
-            const dateCard = document.getElementById('card-date');
-            dateCard.querySelector('.detail-label').textContent = t.date;
-            dateCard.querySelector('.detail-value').textContent = t.dateVal;
-            dateCard.querySelector('.detail-sub').textContent = t.dateDay;
+            const dc = document.getElementById('card-date');
+            dc.querySelector('.detail-label').textContent = t.date;
+            dc.querySelector('.detail-value').textContent = t.dateVal;
+            dc.querySelector('.detail-sub').textContent = t.dateDay;
 
-            const timeCard = document.getElementById('card-time');
-            timeCard.querySelector('.detail-label').textContent = t.time;
-            timeCard.querySelector('.detail-sub').textContent = t.timeSub;
+            const tc = document.getElementById('card-time');
+            tc.querySelector('.detail-label').textContent = t.time;
+            tc.querySelector('.detail-sub').textContent = t.timeSub;
 
-            const locCard = document.getElementById('card-location');
-            locCard.querySelector('.detail-sub').textContent = t.locationSub;
-            locCard.querySelector('.map-button span').textContent = t.route;
+            const lc = document.getElementById('card-location');
+            lc.querySelector('.detail-sub').textContent = t.locationSub;
+            lc.querySelector('.map-button span').textContent = t.route;
 
             // Form
-            document.querySelector('label[for="name"]').textContent = t.nameLabel;
-            document.getElementById('name').placeholder = t.namePh;
-            document.querySelector('label[for="guests"]').textContent = t.guestsLabel;
-            const guestOpts = document.getElementById('guests').options;
-            const pKeys = ['p1','p2','p3','p4','p5'];
-            for (let i = 0; i < guestOpts.length; i++) guestOpts[i].textContent = t[pKeys[i]];
-
-            document.querySelector('label[for="attendance"]').textContent = t.attendLabel;
-            const attOpts = document.getElementById('attendance').options;
-            attOpts[0].textContent = t.attendYes;
-            attOpts[1].textContent = t.attendNo;
-
-            document.querySelector('label[for="message"]').textContent = t.msgLabel;
+            document.querySelector('#step1 .form-label').textContent = t.guestNamesLabel;
+            document.querySelectorAll('.guest-input').forEach(inp => inp.placeholder = t.namePh);
+            document.querySelector('#addGuestBtn span').textContent = t.addGuest;
+            document.querySelector('#step2 .form-label').textContent = t.msgLabel;
             document.getElementById('message').placeholder = t.msgPh;
+            document.querySelector('.submit-btn').textContent = t.submitBtn;
+            document.querySelectorAll('.btn-next').forEach(b => b.textContent = t.btnNext);
 
-            const submitBtn = document.querySelector('.submit-btn');
-            if (!submitBtn.disabled) submitBtn.textContent = t.submitBtn;
+            renderGuests();
         }
 
-        // ===== LOADER =====
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1800);
+        // ===== MUSIC =====
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicBars = document.getElementById('musicBars');
+
+        document.getElementById('musicIntroBtn').addEventListener('click', () => {
+            bgMusic.play().then(() => {
+                document.getElementById('musicIntro').classList.add('hidden');
+                musicBtn.style.display = 'flex';
+                musicBars.classList.add('playing');
+            }).catch(() => {
+                document.getElementById('musicIntro').classList.add('hidden');
+            });
+        });
+
+        musicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicBars.classList.add('playing');
+            } else {
+                bgMusic.pause();
+                musicBars.classList.remove('playing');
+            }
         });
 
         // ===== PARTICLES =====
         function createParticles() {
             const container = document.getElementById('particles');
-            const count = window.innerWidth < 600 ? 20 : 35;
+            const count = window.innerWidth < 600 ? 18 : 30;
             for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.width = (Math.random() * 4 + 2) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
-                particle.style.animationDelay = (Math.random() * 10) + 's';
-                particle.style.opacity = 0;
-                container.appendChild(particle);
+                const p = document.createElement('div');
+                const isHeart = Math.random() > 0.7;
+                p.className = 'particle ' + (isHeart ? 'heart' : 'dot');
+                p.style.left = Math.random() * 100 + '%';
+                const size = isHeart ? (Math.random() * 10 + 8) : (Math.random() * 4 + 2);
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                if (isHeart) p.style.fontSize = size + 'px';
+                p.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                p.style.animationDelay = (Math.random() * 12) + 's';
+                container.appendChild(p);
             }
         }
         createParticles();
 
+        // ===== CONFETTI =====
+        function launchConfetti() {
+            const container = document.getElementById('confetti');
+            const colors = ['#C5A55A', '#D4BA7A', '#A8893E', '#EDE3D3', '#7CAE7A', '#F5EDE0'];
+            for (let i = 0; i < 60; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.width = (Math.random() * 8 + 4) + 'px';
+                piece.style.height = (Math.random() * 12 + 6) + 'px';
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                piece.style.animationDelay = (Math.random() * 0.8) + 's';
+                container.appendChild(piece);
+            }
+            setTimeout(() => { container.innerHTML = ''; }, 4000);
+        }
+
         // ===== COUNTDOWN =====
+        let lastSeconds = -1;
         function updateCountdown() {
             const target = new Date('2026-08-05T17:00:00').getTime();
-            const now = Date.now();
-            const diff = target - now;
-            if (diff <= 0) {
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '0';
-                document.getElementById('minutes').textContent = '0';
-                document.getElementById('seconds').textContent = '0';
-                return;
+            const diff = target - Date.now();
+            if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0'); return; }
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+
+            const secEl = document.getElementById('seconds');
+            if (s !== lastSeconds) {
+                secEl.classList.remove('tick');
+                void secEl.offsetWidth;
+                secEl.classList.add('tick');
+                lastSeconds = s;
             }
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            document.getElementById('days').textContent = d;
+            document.getElementById('hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+            secEl.textContent = String(s).padStart(2, '0');
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
         // ===== SCROLL REVEAL =====
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.15 });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
         document.querySelectorAll('.reveal, .detail-card').forEach(el => observer.observe(el));
+
+        // ===== RSVP STEPS =====
+        function updateSteps(step) {
+            for (let i = 1; i <= 2; i++) {
+                document.getElementById('step' + i).classList.toggle('active', i === step);
+                const dot = document.getElementById('stepDot' + i);
+                dot.classList.remove('active', 'done');
+                if (i < step) dot.classList.add('done');
+                else if (i === step) dot.classList.add('active');
+            }
+            document.getElementById('stepLine1').classList.toggle('done', step > 1);
+        }
+
+        function nextStep(step) {
+            if (step === 2 && currentStep === 1) {
+                const inputs = document.querySelectorAll('.guest-input');
+                let valid = true;
+                inputs.forEach(inp => {
+                    if (!inp.value.trim()) { inp.style.borderColor = '#D4836A'; valid = false; }
+                    else inp.style.borderColor = '';
+                });
+                if (!valid) return;
+            }
+            currentStep = step;
+            updateSteps(step);
+            if (navigator.vibrate) navigator.vibrate(10);
+        }
+
+        function prevStep(step) {
+            currentStep = step;
+            updateSteps(step);
+        }
+
+        function addGuestInput() {
+            const container = document.getElementById('guestNames');
+            const count = container.children.length + 1;
+            if (count > 10) return;
+            const t = translations[currentLang];
+            const row = document.createElement('div');
+            row.className = 'guest-name-row';
+            row.innerHTML = `
+                <span class="guest-number">${count}</span>
+                <input class="form-input guest-input" type="text" placeholder="${escapeHtml(t.namePh)}" required>
+                <button type="button" class="remove-guest-btn" onclick="removeGuestInput(this)">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                </button>
+            `;
+            container.appendChild(row);
+            row.querySelector('input').focus();
+            if (navigator.vibrate) navigator.vibrate(10);
+        }
+
+        function removeGuestInput(btn) {
+            btn.closest('.guest-name-row').remove();
+            document.querySelectorAll('.guest-number').forEach((n, i) => n.textContent = i + 1);
+        }
 
         // ===== GUEST DATA (API) =====
         let guestsCache = [];
@@ -1322,25 +1614,11 @@
             renderGuests();
         }
 
-        async function saveGuest(guest) {
-            try {
-                await fetch('/api/guests', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(guest)
-                });
-                await loadGuests();
-            } catch (err) {
-                console.error('Failed to save guest:', err);
-            }
-        }
-
         function renderGuests() {
             const guests = guestsCache;
             const list = document.getElementById('guestList');
             const empty = document.getElementById('emptyList');
             const countEl = document.getElementById('guestCountNum');
-
             const confirmed = guests.filter(g => g.attending);
             countEl.textContent = confirmed.reduce((sum, g) => sum + g.count, 0);
 
@@ -1349,18 +1627,15 @@
                 list.querySelectorAll('.guest-item').forEach(el => el.remove());
                 return;
             }
-
             empty.style.display = 'none';
             list.querySelectorAll('.guest-item').forEach(el => el.remove());
 
+            const t = translations[currentLang];
             guests.forEach((g, i) => {
                 const li = document.createElement('li');
                 li.className = 'guest-item';
-                li.style.animationDelay = (i * 0.08) + 's';
-
+                li.style.animationDelay = (i * 0.06) + 's';
                 const initials = g.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
-                const t = translations[currentLang];
-
                 li.innerHTML = `
                     <div class="guest-avatar"><span>${escapeHtml(initials)}</span></div>
                     <div class="guest-info">
@@ -1381,7 +1656,7 @@
 
         loadGuests();
 
-        // ===== RSVP FORM =====
+        // ===== FORM SUBMIT =====
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('.submit-btn');
@@ -1389,30 +1664,39 @@
             btn.textContent = t.sending;
             btn.disabled = true;
 
-            const name = document.getElementById('name').value.trim();
-            const guestCount = parseInt(document.getElementById('guests').value);
-            const attending = document.getElementById('attendance').value === 'yes';
+            const names = Array.from(document.querySelectorAll('.guest-input')).map(i => i.value.trim()).filter(Boolean);
+            const attending = true;
             const message = document.getElementById('message').value.trim();
 
-            await saveGuest({ name, count: guestCount, attending, message });
+            try {
+                for (const name of names) {
+                    await fetch('/api/guests', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, count: 1, attending, message })
+                    });
+                }
+                await loadGuests();
+            } catch (err) { console.error(err); }
+
             this.style.display = 'none';
+            document.querySelector('.steps-indicator').style.display = 'none';
             document.getElementById('successMsg').classList.add('show');
+            launchConfetti();
 
             setTimeout(() => {
                 document.querySelector('.guestlist-section').scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
+            }, 2000);
         });
 
-        // ===== SMOOTH SCROLL =====
+        // ===== SCROLL =====
         document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
             document.querySelector('.countdown-section').scrollIntoView({ behavior: 'smooth' });
         });
 
         // ===== HAPTIC =====
-        document.querySelectorAll('.submit-btn, .map-button, .countdown-item').forEach(el => {
-            el.addEventListener('click', () => {
-                if (navigator.vibrate) navigator.vibrate(10);
-            });
+        document.querySelectorAll('.map-button, .countdown-item').forEach(el => {
+            el.addEventListener('click', () => { if (navigator.vibrate) navigator.vibrate(10); });
         });
     </script>
 </body>
