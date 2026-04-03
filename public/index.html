@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>J & L — Verlobungsfeier</title>
+    <title>L & J — Verlobungsfeier</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Noto+Serif+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -306,32 +306,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            height: 120px;
+            gap: 0;
         }
 
         .monogram-letter {
-            font-family: 'Great Vibes', cursive;
-            font-size: 7rem;
-            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 700;
             color: var(--gold);
             line-height: 1;
             text-shadow: 0 2px 20px var(--gold-glow);
-            position: relative;
-        }
-
-        .monogram-letter-j {
-            z-index: 1;
-            margin-right: -22px;
-        }
-
-        .monogram-letter-l {
-            z-index: 2;
-            margin-left: -22px;
         }
 
         .monogram-and {
-            display: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--gold-dark);
+            margin: 0 12px;
+            align-self: center;
         }
 
         .monogram-line {
@@ -341,8 +335,8 @@
             margin: 0 auto;
         }
 
-        .monogram-line-top { margin-bottom: 10px; }
-        .monogram-line-bottom { margin-top: 10px; }
+        .monogram-line-top { margin-bottom: 14px; }
+        .monogram-line-bottom { margin-top: 18px; }
 
         .invite-text {
             font-family: 'Montserrat', sans-serif;
@@ -1243,8 +1237,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (min-width: 400px) {
-            .monogram-letter { font-size: 8rem; }
-            .monogram { height: 140px; }
+            .monogram-letter { font-size: 6.5rem; }
             .engagement-text { font-size: 4rem; }
             .countdown-item { width: 80px; height: 96px; }
             [data-lang="hy"] .engagement-text { font-size: 2.8rem; }
@@ -1252,10 +1245,7 @@
 
         @media (min-width: 768px) {
             section { padding: 80px 40px; }
-            .monogram-letter { font-size: 10rem; }
-            .monogram { height: 170px; }
-            .monogram-letter-j { margin-right: -30px; }
-            .monogram-letter-l { margin-left: -30px; }
+            .monogram-letter { font-size: 8rem; }
             .save-the-date { font-size: 3rem; }
             .engagement-text { font-size: 5rem; }
             .countdown-item { width: 100px; height: 112px; }
@@ -1272,7 +1262,7 @@
     <!-- MUSIC INTRO -->
     <div class="music-intro" id="musicIntro">
         <div class="music-intro-content">
-            <div class="music-intro-monogram">J & L</div>
+            <div class="music-intro-monogram">L & J</div>
             <div class="music-intro-line"></div>
             <p class="music-intro-text">Verlobungsfeier</p>
             <button class="music-intro-btn" id="musicIntroBtn">
@@ -1326,8 +1316,9 @@
         <div class="monogram-wrapper">
             <div class="monogram-line monogram-line-top"></div>
             <div class="monogram">
-                <span class="monogram-letter monogram-letter-j">J</span>
-                <span class="monogram-letter monogram-letter-l">L</span>
+                <span class="monogram-letter">L</span>
+                <span class="monogram-and">&</span>
+                <span class="monogram-letter">J</span>
             </div>
             <div class="monogram-line monogram-line-bottom"></div>
         </div>
@@ -1452,7 +1443,7 @@
                 <div class="form-step" id="step2">
                     <div class="form-group">
                         <label class="form-label" for="message">Nachricht (optional)</label>
-                        <textarea class="form-textarea" id="message" placeholder="Eure Nachricht an J & L..."></textarea>
+                        <textarea class="form-textarea" id="message" placeholder="Eure Nachricht an L & J..."></textarea>
                     </div>
                     <div class="btn-row">
                         <button type="button" class="btn-back" onclick="prevStep(1)">&#8592;</button>
@@ -1493,7 +1484,7 @@
 
     <!-- ===== FOOTER ===== -->
     <section class="footer">
-        <div class="footer-monogram">J & L</div>
+        <div class="footer-monogram">L & J</div>
         <div class="divider"></div>
         <p class="footer-text">Wir freuen uns auf euch</p>
         <div class="divider"></div>
@@ -1522,7 +1513,7 @@
                 guestNamesLabel: 'Namen der G\u00e4ste',
                 namePh: 'Vor- und Nachname',
                 addGuest: 'Weitere Person',
-                msgLabel: 'Nachricht (optional)', msgPh: 'Eure Nachricht an J & L...',
+                msgLabel: 'Nachricht (optional)', msgPh: 'Eure Nachricht an L & J...',
                 submitBtn: 'Absenden',
                 btnNext: 'Weiter',
                 successTitle: 'Vielen Dank!',
@@ -1560,7 +1551,7 @@
                 guestNamesLabel: '\u0540\u0575\u0578\u0582\u0580\u0565\u0580\u056b \u0561\u0576\u0578\u0582\u0576\u0576\u0565\u0580\u0568',
                 namePh: '\u0531\u0576\u0578\u0582\u0576 \u0531\u0566\u0563\u0561\u0576\u0578\u0582\u0576',
                 addGuest: '\u0531\u057e\u0565\u056c\u0561\u0581\u0576\u0565\u056c \u0570\u0575\u0578\u0582\u0580',
-                msgLabel: '\u0540\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576 (\u056f\u0561\u0574\u0561\u057e\u0578\u0580)', msgPh: '\u0541\u0565\u0580 \u0570\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 J & L-\u056b\u0576...',
+                msgLabel: '\u0540\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576 (\u056f\u0561\u0574\u0561\u057e\u0578\u0580)', msgPh: '\u0541\u0565\u0580 \u0570\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 L & J-\u056b\u0576...',
                 submitBtn: '\u0540\u0561\u057d\u057f\u0561\u057f\u0565\u056c',
                 btnNext: '\u0540\u0561\u057b\u0578\u0580\u0564',
                 successTitle: '\u0547\u0576\u0578\u0580\u0570\u0561\u056f\u0561\u056c\u0578\u0582\u0569\u0575\u0578\u0582\u0576!',
