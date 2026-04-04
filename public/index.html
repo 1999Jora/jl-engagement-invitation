@@ -131,11 +131,14 @@
         }
 
         .music-intro-monogram {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
             margin-bottom: 16px;
+        }
+
+        .music-intro-monogram img {
+            width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         .music-intro-line {
@@ -306,26 +309,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0;
         }
 
-        .monogram-letter {
-            font-family: 'Playfair Display', serif;
-            font-size: 5.5rem;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1;
-            text-shadow: 0 2px 20px var(--gold-glow);
-        }
-
-        .monogram-and {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 300;
-            font-style: italic;
-            color: var(--gold-dark);
-            margin: 0 12px;
-            align-self: center;
+        .monogram img {
+            width: 160px;
+            height: auto;
+            display: block;
         }
 
         .monogram-line {
@@ -729,413 +718,7 @@
             .gallery-frame img { height: 360px; }
         }
 
-        /* ===== RSVP ===== */
-        .rsvp-section {
-            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 50%, var(--cream) 100%);
-            text-align: center;
-            min-height: auto;
-            padding: 80px 24px;
-        }
-
-        .rsvp-card {
-            background: var(--white);
-            border: 1px solid var(--beige);
-            border-radius: 22px;
-            padding: 36px 24px;
-            width: 100%;
-            max-width: 380px;
-            box-shadow: 0 8px 40px rgba(197, 165, 90, 0.07);
-        }
-
-        .rsvp-card .section-title { margin-bottom: 4px; }
-
-        /* Step indicator */
-        .steps-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 28px;
-        }
-
-        .step-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--beige);
-            transition: all 0.4s ease;
-        }
-
-        .step-dot.active {
-            background: var(--gold);
-            transform: scale(1.2);
-        }
-
-        .step-dot.done { background: var(--green); }
-
-        .step-line {
-            width: 40px;
-            height: 2px;
-            background: var(--beige);
-            transition: background 0.4s ease;
-        }
-
-        .step-line.done { background: var(--green); }
-
-        /* Form steps */
-        .form-step {
-            display: none;
-            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .form-step.active { display: block; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-            text-align: left;
-        }
-
-        .form-label {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.58rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-medium);
-            margin-bottom: 6px;
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 13px 16px;
-            border: 1.5px solid var(--beige);
-            border-radius: 12px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            background: var(--cream);
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            -webkit-appearance: none;
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px var(--gold-glow);
-        }
-
-        .form-textarea { resize: none; height: 80px; }
-
-        .form-select {
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C5A55A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 40px;
-        }
-
-        /* Guest name inputs */
-        .guest-names-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .guest-name-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideIn 0.4s ease;
-        }
-
-        .guest-name-row .form-input { flex: 1; }
-
-        .guest-number {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .add-guest-btn, .remove-guest-btn {
-            border: none;
-            background: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .add-guest-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-            padding: 8px 0;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: var(--gold);
-        }
-
-        .add-guest-btn:hover { color: var(--gold-dark); }
-
-        .add-guest-btn svg, .remove-guest-btn svg {
-            width: 18px;
-            height: 18px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .remove-guest-btn {
-            color: var(--red-soft);
-            padding: 4px;
-        }
-
-        .remove-guest-btn:hover { color: #c0604a; }
-
-        /* Buttons */
-        .btn-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .btn-back {
-            flex: 0 0 auto;
-            padding: 13px 20px;
-            background: transparent;
-            border: 1.5px solid var(--beige);
-            border-radius: 30px;
-            color: var(--text-medium);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-back:hover { border-color: var(--gold); color: var(--gold); }
-
-        .btn-next, .submit-btn {
-            flex: 1;
-            padding: 13px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            border: none;
-            border-radius: 30px;
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-next:hover, .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px var(--gold-glow);
-        }
-
-        .btn-next:active, .submit-btn:active { transform: translateY(0); }
-
-        /* Attendance toggle */
-        .attendance-toggle {
-            display: flex;
-            gap: 12px;
-            margin-top: 4px;
-        }
-
-        .attendance-option {
-            flex: 1;
-            padding: 16px 12px;
-            border: 2px solid var(--beige);
-            border-radius: 14px;
-            background: var(--cream);
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .attendance-option:hover { border-color: var(--gold-light); }
-
-        .attendance-option.selected {
-            border-color: var(--gold);
-            background: var(--white);
-            box-shadow: 0 4px 15px var(--gold-glow);
-        }
-
-        .attendance-option.selected.yes { border-color: var(--green); }
-        .attendance-option.selected.no { border-color: var(--red-soft); }
-
-        .attendance-icon {
-            font-size: 1.8rem;
-            margin-bottom: 6px;
-            transition: transform 0.3s ease;
-        }
-
-        .attendance-option.selected .attendance-icon { transform: scale(1.2); }
-
-        .attendance-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-medium);
-        }
-
-        /* Success */
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 20px 10px;
-        }
-
-        .success-message.show { display: block; animation: fadeInUp 0.6s ease; }
-
-        .success-check {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 18px;
-            animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes successPop {
-            0% { transform: scale(0); }
-            60% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-
-        .success-check svg { width: 30px; height: 30px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-
-        .success-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-dark); margin-bottom: 8px; }
-
-        .success-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--text-medium); line-height: 1.5; }
-
-        /* ===== CONFETTI ===== */
-        .confetti-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            overflow: hidden;
-        }
-
-        .confetti-piece {
-            position: absolute;
-            top: -10px;
-            animation: confettiFall linear forwards;
-        }
-
-        @keyframes confettiFall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-
-        /* ===== GUEST LIST ===== */
-        .guestlist-section {
-            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 50%, var(--cream) 100%);
-            text-align: center;
-            min-height: auto;
-            padding: 80px 24px;
-        }
-
-        .guestlist-card {
-            background: var(--white);
-            border: 1px solid var(--beige);
-            border-radius: 22px;
-            padding: 36px 24px;
-            width: 100%;
-            max-width: 380px;
-            box-shadow: 0 8px 40px rgba(197, 165, 90, 0.07);
-        }
-
-        .guest-count-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin-bottom: 24px;
-        }
-
-        .guest-count-number { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold); }
-
-        .guest-count-text { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-medium); }
-
-        .guest-list {
-            list-style: none;
-            max-height: 380px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--beige) transparent;
-        }
-
-        .guest-list::-webkit-scrollbar { width: 4px; }
-        .guest-list::-webkit-scrollbar-track { background: transparent; }
-        .guest-list::-webkit-scrollbar-thumb { background: var(--beige); border-radius: 4px; }
-
-        .guest-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--cream-dark);
-            animation: fadeInUp 0.4s ease forwards;
-            opacity: 0;
-        }
-
-        .guest-item:last-child { border-bottom: none; }
-
-        .guest-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 14px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px var(--gold-glow);
-        }
-
-        .guest-avatar span { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 600; color: var(--white); }
-
-        .guest-info { flex: 1; text-align: left; }
-
-        .guest-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-dark); }
-
-        .guest-details { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; color: var(--text-medium); letter-spacing: 0.05em; }
-
-        .guest-status { width: 9px; height: 9px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-left: 8px; box-shadow: 0 0 6px rgba(124, 174, 122, 0.4); }
-
-        .guest-status.declined { background: var(--red-soft); box-shadow: 0 0 6px rgba(212, 131, 106, 0.4); }
-
-        .empty-list { padding: 30px 10px; text-align: center; }
-
-        .empty-list-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.35; }
-
-        .empty-list-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-medium); }
+        /* RSVP and Guest List removed */
 
         /* ===== FOOTER ===== */
         .footer {
@@ -1145,7 +728,8 @@
             min-height: auto;
         }
 
-        .footer-monogram { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 10px; }
+        .footer-monogram { margin-bottom: 10px; }
+        .footer-monogram img { width: 120px; height: auto; display: block; margin: 0 auto; }
         .footer-text { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--gold-dark); margin-bottom: 10px; }
         .footer-date { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-medium); }
 
@@ -1199,35 +783,18 @@
             font-family: 'ArmAllegro', 'Noto Serif Armenian', serif;
         }
 
-        [data-lang="hy"] .success-title {
-            font-family: 'ArmAllegro', 'Noto Serif Armenian', serif;
-        }
-
         /* DavelAghvor — beautiful body text */
         [data-lang="hy"] .invite-text,
         [data-lang="hy"] .section-subtitle,
         [data-lang="hy"] .detail-label,
         [data-lang="hy"] .countdown-label,
-        [data-lang="hy"] .form-label,
-        [data-lang="hy"] .submit-btn,
-        [data-lang="hy"] .btn-next,
-        [data-lang="hy"] .btn-back,
         [data-lang="hy"] .scroll-indicator span,
-        [data-lang="hy"] .guest-count-text,
-        [data-lang="hy"] .guest-details,
         [data-lang="hy"] .map-button,
-        [data-lang="hy"] .attendance-label,
-        [data-lang="hy"] .add-guest-btn,
-        [data-lang="hy"] .empty-list-text,
         [data-lang="hy"] .event-date-hero {
             font-family: 'DavelAghvor', 'Noto Serif Armenian', sans-serif;
         }
 
-        [data-lang="hy"] .form-input,
-        [data-lang="hy"] .form-textarea,
-        [data-lang="hy"] .detail-sub,
-        [data-lang="hy"] .success-text,
-        [data-lang="hy"] .guest-name {
+        [data-lang="hy"] .detail-sub {
             font-family: 'DavelAghvor', 'Noto Serif Armenian', serif;
         }
 
@@ -1237,7 +804,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (min-width: 400px) {
-            .monogram-letter { font-size: 6.5rem; }
+            .monogram img { width: 200px; }
             .engagement-text { font-size: 4rem; }
             .countdown-item { width: 80px; height: 96px; }
             [data-lang="hy"] .engagement-text { font-size: 2.8rem; }
@@ -1245,14 +812,12 @@
 
         @media (min-width: 768px) {
             section { padding: 80px 40px; }
-            .monogram-letter { font-size: 8rem; }
+            .monogram img { width: 240px; }
             .save-the-date { font-size: 3rem; }
             .engagement-text { font-size: 5rem; }
             .countdown-item { width: 100px; height: 112px; }
             .countdown-number { font-size: 2.5rem; }
             .detail-card { max-width: 420px; padding: 40px 30px; }
-            .rsvp-card { max-width: 440px; padding: 44px 32px; }
-            .guestlist-card { max-width: 440px; padding: 44px 32px; }
             [data-lang="hy"] .engagement-text { font-size: 3.5rem; }
         }
     </style>
@@ -1262,7 +827,7 @@
     <!-- MUSIC INTRO -->
     <div class="music-intro" id="musicIntro">
         <div class="music-intro-content">
-            <div class="music-intro-monogram">L & J</div>
+            <div class="music-intro-monogram"><img src="monogram.svg" alt="J & L"></div>
             <div class="music-intro-line"></div>
             <p class="music-intro-text">Verlobungsfeier</p>
             <button class="music-intro-btn" id="musicIntroBtn">
@@ -1295,10 +860,7 @@
     <!-- PARTICLES -->
     <div class="particles" id="particles"></div>
 
-    <!-- CONFETTI CONTAINER -->
-    <div class="confetti-container" id="confetti"></div>
-
-    <!-- ===== HERO ===== -->
+<!-- ===== HERO ===== -->
     <section class="hero">
         <div class="hero-bg-shape hero-bg-shape-1"></div>
         <div class="hero-bg-shape hero-bg-shape-2"></div>
@@ -1316,9 +878,7 @@
         <div class="monogram-wrapper">
             <div class="monogram-line monogram-line-top"></div>
             <div class="monogram">
-                <span class="monogram-letter">L</span>
-                <span class="monogram-and">&</span>
-                <span class="monogram-letter">J</span>
+                <img src="monogram.svg" alt="J & L">
             </div>
             <div class="monogram-line monogram-line-bottom"></div>
         </div>
@@ -1406,85 +966,10 @@
         </div>
     </section>
 
-    <!-- ===== RSVP ===== -->
-    <section class="rsvp-section">
-        <div class="rsvp-card reveal">
-            <h2 class="section-title">Zusage</h2>
-            <p class="section-subtitle" style="margin-bottom: 20px;">Wir freuen uns auf euch</p>
-
-            <div class="steps-indicator">
-                <div class="step-dot active" id="stepDot1"></div>
-                <div class="step-line" id="stepLine1"></div>
-                <div class="step-dot" id="stepDot2"></div>
-            </div>
-
-            <form id="rsvpForm">
-                <!-- Step 1: Guest names -->
-                <div class="form-step active" id="step1">
-                    <div class="form-group">
-                        <label class="form-label">Namen der Gäste</label>
-                        <div class="guest-names-container" id="guestNames">
-                            <div class="guest-name-row">
-                                <span class="guest-number">1</span>
-                                <input class="form-input guest-input" type="text" placeholder="Vor- und Nachname" required>
-                            </div>
-                        </div>
-                        <button type="button" class="add-guest-btn" id="addGuestBtn" onclick="addGuestInput()">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                            <span>Weitere Person</span>
-                        </button>
-                    </div>
-                    <div class="btn-row">
-                        <button type="button" class="btn-next" onclick="nextStep(2)">Weiter</button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Message -->
-                <div class="form-step" id="step2">
-                    <div class="form-group">
-                        <label class="form-label" for="message">Nachricht (optional)</label>
-                        <textarea class="form-textarea" id="message" placeholder="Eure Nachricht an L & J..."></textarea>
-                    </div>
-                    <div class="btn-row">
-                        <button type="button" class="btn-back" onclick="prevStep(1)">&#8592;</button>
-                        <button type="submit" class="submit-btn">Absenden</button>
-                    </div>
-                </div>
-            </form>
-
-            <div class="success-message" id="successMsg">
-                <div class="success-check">
-                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <p class="success-title">Vielen Dank!</p>
-                <p class="success-text">Eure Zusage wurde gesendet.<br>Wir freuen uns auf euch!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== GUEST LIST ===== -->
-    <section class="guestlist-section">
-        <div class="guestlist-card reveal">
-            <h2 class="section-title">Gästeliste</h2>
-            <p class="section-subtitle" style="margin-bottom: 20px;">Wer kommt zur Feier</p>
-
-            <div class="guest-count-badge">
-                <span class="guest-count-number" id="guestCountNum">0</span>
-                <span class="guest-count-text">Zusagen</span>
-            </div>
-
-            <ul class="guest-list" id="guestList">
-                <div class="empty-list" id="emptyList">
-                    <div class="empty-list-icon">&#9825;</div>
-                    <p class="empty-list-text">Noch keine Zusagen — seid die Ersten!</p>
-                </div>
-            </ul>
-        </div>
-    </section>
 
     <!-- ===== FOOTER ===== -->
     <section class="footer">
-        <div class="footer-monogram">L & J</div>
+        <div class="footer-monogram"><img src="monogram.svg" alt="J & L"></div>
         <div class="divider"></div>
         <p class="footer-text">Wir freuen uns auf euch</p>
         <div class="divider"></div>
@@ -1507,24 +992,7 @@
                 time: 'Uhrzeit', timeSub: 'Einlass ab 16:30 Uhr',
                 locationSub: 'Armavir',
                 route: 'Route planen',
-                rsvp: 'Zusage', rsvpSub: 'Wir freuen uns auf euch',
-                attendLabel: 'Teilnahme',
-                attendYes: 'Ich komme', attendNo: 'Leider nicht',
-                guestNamesLabel: 'Namen der G\u00e4ste',
-                namePh: 'Vor- und Nachname',
-                addGuest: 'Weitere Person',
-                msgLabel: 'Nachricht (optional)', msgPh: 'Eure Nachricht an L & J...',
-                submitBtn: 'Absenden',
-                btnNext: 'Weiter',
-                successTitle: 'Vielen Dank!',
-                successText: 'Eure Zusage wurde gesendet.\nWir freuen uns auf euch!',
-                guestlistTitle: 'G\u00e4steliste',
-                guestlistSub: 'Wer kommt zur Feier',
-                guestBadge: 'Zusagen',
-                emptyList: 'Noch keine Zusagen \u2014 seid die Ersten!',
                 footerText: 'Wir freuen uns auf euch',
-                personSuffix: 'Pers.',
-                sending: 'Wird gesendet...',
                 introText: 'Verlobungsfeier',
                 heroDate: '05 . 08 . 2026',
                 saveTheDate: 'Save the Date',
@@ -1545,24 +1013,7 @@
                 time: '\u053a\u0561\u0574\u0568', timeSub: '\u0544\u0578\u0582\u057f\u0584\u0568 16:30-\u056b\u0581',
                 locationSub: '\u0531\u0580\u0574\u0561\u057e\u056b\u0580',
                 route: '\u0554\u0561\u0580\u057f\u0565\u0566',
-                rsvp: '\u0540\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574', rsvpSub: '\u054d\u057a\u0561\u057d\u0578\u0582\u0574 \u0565\u0576\u0584 \u0571\u0565\u0566',
-                attendLabel: '\u0544\u0561\u057d\u0576\u0561\u056f\u0581\u0578\u0582\u0569\u0575\u0578\u0582\u0576',
-                attendYes: '\u053f\u0563\u0561\u0574', attendNo: '\u0551\u0561\u057e\u0578\u056f',
-                guestNamesLabel: '\u0540\u0575\u0578\u0582\u0580\u0565\u0580\u056b \u0561\u0576\u0578\u0582\u0576\u0576\u0565\u0580\u0568',
-                namePh: '\u0531\u0576\u0578\u0582\u0576 \u0531\u0566\u0563\u0561\u0576\u0578\u0582\u0576',
-                addGuest: '\u0531\u057e\u0565\u056c\u0561\u0581\u0576\u0565\u056c \u0570\u0575\u0578\u0582\u0580',
-                msgLabel: '\u0540\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576 (\u056f\u0561\u0574\u0561\u057e\u0578\u0580)', msgPh: '\u0541\u0565\u0580 \u0570\u0561\u0572\u0578\u0580\u0564\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 L & J-\u056b\u0576...',
-                submitBtn: '\u0540\u0561\u057d\u057f\u0561\u057f\u0565\u056c',
-                btnNext: '\u0540\u0561\u057b\u0578\u0580\u0564',
-                successTitle: '\u0547\u0576\u0578\u0580\u0570\u0561\u056f\u0561\u056c\u0578\u0582\u0569\u0575\u0578\u0582\u0576!',
-                successText: '\u0541\u0565\u0580 \u0570\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574\u0568 \u0578\u0582\u0572\u0561\u0580\u056f\u057e\u0565\u056c \u0567:',
-                guestlistTitle: '\u0540\u0575\u0578\u0582\u0580\u0565\u0580\u056b \u0581\u0578\u0582\u0581\u0561\u056f',
-                guestlistSub: '\u0548\u057e \u0567 \u0563\u0561\u056c\u056b\u057d',
-                guestBadge: '\u0540\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574\u0576\u0565\u0580',
-                emptyList: '\u0534\u0565\u057c \u0570\u0561\u057d\u057f\u0561\u057f\u0578\u0582\u0574\u0576\u0565\u0580 \u0579\u056f\u0561\u0576 \u2014 \u0565\u0572\u0565\u0584 \u0561\u057c\u0561\u057b\u056b\u0576\u0568!',
                 footerText: '\u054d\u057a\u0561\u057d\u0578\u0582\u0574 \u0565\u0576\u0584 \u0571\u0565\u0566',
-                personSuffix: '\u0561\u0576\u0571',
-                sending: '\u0548\u0582\u0572\u0561\u0580\u056f\u057e\u0578\u0582\u0574 \u0567...',
                 introText: '\u0546\u0577\u0561\u0576\u0561\u0564\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576',
                 heroDate: '05 . 08 . 2026',
                 saveTheDate: '\u054a\u0561\u0570\u057a\u0561\u0576\u0565\u0584 \u0531\u0574\u057d\u0561\u0569\u056b\u057e\u0568',
@@ -1573,8 +1024,6 @@
         };
 
         let currentLang = 'de';
-        let currentStep = 1;
-        let attendanceValue = 'yes';
 
         // ===== LANGUAGE =====
         function setLang(lang) {
@@ -1590,11 +1039,6 @@
                 '.scroll-indicator span': 'scrollMore',
                 '.countdown-section .section-title': 'countdown', '.countdown-section .section-subtitle': 'countdownSub',
                 '.details-section .section-title': 'details', '.details-section .section-subtitle': 'detailsSub',
-                '.rsvp-section .section-title': 'rsvp', '.rsvp-section .section-subtitle': 'rsvpSub',
-                '.success-title': 'successTitle',
-                '.guestlist-section .section-title': 'guestlistTitle', '.guestlist-section .section-subtitle': 'guestlistSub',
-                '.guest-count-text': 'guestBadge',
-                '#emptyList .empty-list-text': 'emptyList',
                 '.gallery-section .section-title': 'gallery', '.gallery-section .section-subtitle': 'gallerySub',
                 '.gallery-hint': 'galleryHint',
                 '.footer-text': 'footerText',
@@ -1607,10 +1051,6 @@
                 const el = document.querySelector(sel);
                 if (el) el.textContent = t[key];
             }
-
-            // Success text with line break
-            const st = document.querySelector('.success-text');
-            if (st) st.innerHTML = t.successText.replace('\n', '<br>');
 
             const labels = document.querySelectorAll('.countdown-label');
             ['days', 'hours', 'minutes', 'seconds'].forEach((k, i) => { if (labels[i]) labels[i].textContent = t[k]; });
@@ -1627,17 +1067,6 @@
             const lc = document.getElementById('card-location');
             lc.querySelector('.detail-sub').textContent = t.locationSub;
             lc.querySelector('.map-button span').textContent = t.route;
-
-            // Form
-            document.querySelector('#step1 .form-label').textContent = t.guestNamesLabel;
-            document.querySelectorAll('.guest-input').forEach(inp => inp.placeholder = t.namePh);
-            document.querySelector('#addGuestBtn span').textContent = t.addGuest;
-            document.querySelector('#step2 .form-label').textContent = t.msgLabel;
-            document.getElementById('message').placeholder = t.msgPh;
-            document.querySelector('.submit-btn').textContent = t.submitBtn;
-            document.querySelectorAll('.btn-next').forEach(b => b.textContent = t.btnNext);
-
-            renderGuests();
         }
 
         // ===== MUSIC =====
@@ -1685,25 +1114,6 @@
         }
         createParticles();
 
-        // ===== CONFETTI =====
-        function launchConfetti() {
-            const container = document.getElementById('confetti');
-            const colors = ['#C5A55A', '#D4BA7A', '#A8893E', '#EDE3D3', '#7CAE7A', '#F5EDE0'];
-            for (let i = 0; i < 60; i++) {
-                const piece = document.createElement('div');
-                piece.className = 'confetti-piece';
-                piece.style.left = Math.random() * 100 + '%';
-                piece.style.width = (Math.random() * 8 + 4) + 'px';
-                piece.style.height = (Math.random() * 12 + 6) + 'px';
-                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                piece.style.animationDelay = (Math.random() * 0.8) + 's';
-                container.appendChild(piece);
-            }
-            setTimeout(() => { container.innerHTML = ''; }, 4000);
-        }
-
         // ===== COUNTDOWN =====
         let lastSeconds = -1;
         function updateCountdown() {
@@ -1736,148 +1146,6 @@
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.12 });
         document.querySelectorAll('.reveal, .detail-card').forEach(el => observer.observe(el));
-
-        // ===== RSVP STEPS =====
-        function updateSteps(step) {
-            for (let i = 1; i <= 2; i++) {
-                document.getElementById('step' + i).classList.toggle('active', i === step);
-                const dot = document.getElementById('stepDot' + i);
-                dot.classList.remove('active', 'done');
-                if (i < step) dot.classList.add('done');
-                else if (i === step) dot.classList.add('active');
-            }
-            document.getElementById('stepLine1').classList.toggle('done', step > 1);
-        }
-
-        function nextStep(step) {
-            if (step === 2 && currentStep === 1) {
-                const inputs = document.querySelectorAll('.guest-input');
-                let valid = true;
-                inputs.forEach(inp => {
-                    if (!inp.value.trim()) { inp.style.borderColor = '#D4836A'; valid = false; }
-                    else inp.style.borderColor = '';
-                });
-                if (!valid) return;
-            }
-            currentStep = step;
-            updateSteps(step);
-            if (navigator.vibrate) navigator.vibrate(10);
-        }
-
-        function prevStep(step) {
-            currentStep = step;
-            updateSteps(step);
-        }
-
-        function addGuestInput() {
-            const container = document.getElementById('guestNames');
-            const count = container.children.length + 1;
-            if (count > 10) return;
-            const t = translations[currentLang];
-            const row = document.createElement('div');
-            row.className = 'guest-name-row';
-            row.innerHTML = `
-                <span class="guest-number">${count}</span>
-                <input class="form-input guest-input" type="text" placeholder="${escapeHtml(t.namePh)}" required>
-                <button type="button" class="remove-guest-btn" onclick="removeGuestInput(this)">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                </button>
-            `;
-            container.appendChild(row);
-            row.querySelector('input').focus();
-            if (navigator.vibrate) navigator.vibrate(10);
-        }
-
-        function removeGuestInput(btn) {
-            btn.closest('.guest-name-row').remove();
-            document.querySelectorAll('.guest-number').forEach((n, i) => n.textContent = i + 1);
-        }
-
-        // ===== GUEST DATA (API) =====
-        let guestsCache = [];
-
-        async function loadGuests() {
-            try {
-                const res = await fetch('/api/guests');
-                guestsCache = await res.json();
-            } catch { guestsCache = []; }
-            renderGuests();
-        }
-
-        function renderGuests() {
-            const guests = guestsCache;
-            const list = document.getElementById('guestList');
-            const empty = document.getElementById('emptyList');
-            const countEl = document.getElementById('guestCountNum');
-            const confirmed = guests.filter(g => g.attending);
-            countEl.textContent = confirmed.reduce((sum, g) => sum + g.count, 0);
-
-            if (guests.length === 0) {
-                empty.style.display = 'block';
-                list.querySelectorAll('.guest-item').forEach(el => el.remove());
-                return;
-            }
-            empty.style.display = 'none';
-            list.querySelectorAll('.guest-item').forEach(el => el.remove());
-
-            const t = translations[currentLang];
-            guests.forEach((g, i) => {
-                const li = document.createElement('li');
-                li.className = 'guest-item';
-                li.style.animationDelay = (i * 0.06) + 's';
-                const initials = g.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
-                li.innerHTML = `
-                    <div class="guest-avatar"><span>${escapeHtml(initials)}</span></div>
-                    <div class="guest-info">
-                        <div class="guest-name">${escapeHtml(g.name)}</div>
-                        <div class="guest-details">${g.count} ${t.personSuffix}</div>
-                    </div>
-                    <div class="guest-status ${g.attending ? '' : 'declined'}"></div>
-                `;
-                list.appendChild(li);
-            });
-        }
-
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        loadGuests();
-
-        // ===== FORM SUBMIT =====
-        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('.submit-btn');
-            const t = translations[currentLang];
-            btn.textContent = t.sending;
-            btn.disabled = true;
-
-            const names = Array.from(document.querySelectorAll('.guest-input')).map(i => i.value.trim()).filter(Boolean);
-            const attending = true;
-            const message = document.getElementById('message').value.trim();
-
-            try {
-                for (const name of names) {
-                    await fetch('/api/guests', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, count: 1, attending, message })
-                    });
-                }
-                await loadGuests();
-            } catch (err) { console.error(err); }
-
-            this.style.display = 'none';
-            document.querySelector('.steps-indicator').style.display = 'none';
-            document.getElementById('successMsg').classList.add('show');
-            launchConfetti();
-
-            setTimeout(() => {
-                document.querySelector('.guestlist-section').scrollIntoView({ behavior: 'smooth' });
-            }, 2000);
-        });
 
         // ===== SCROLL =====
         document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
